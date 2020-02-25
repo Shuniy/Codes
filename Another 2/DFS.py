@@ -39,6 +39,7 @@ Step 3 − Visit root node.
 
 """
 
+
 class node(object):
     def __init__(self, value):
         self.value = value
@@ -75,12 +76,14 @@ class node(object):
     def _str_(self):
         return f"Node ({self.getValue()})"
 
+
 class Tree(object):
     def __init__(self, value):
         self.root = node(value)
 
     def getRoot(self):
         return self.root
+
 
 Tree = Tree("apple")
 Tree.getRoot().setLeftChild(node("banana"))
@@ -98,9 +101,11 @@ if node.hasLeftChild():
     stack.push(node)
 print(f"""visit_order {visitOrder} stack : {stack}""")
 
-#Pre-order traversal using loop
-#If confused check the cpp implementation you have done recursively 
+# Pre-order traversal using loop
+# If confused check the cpp implementation you have done recursively
 # that is easy to understand
+
+
 def preOrder(Tree):
     visitOrder = list()
     stack = np.Stack()
@@ -130,12 +135,16 @@ def preOrder(Tree):
                 node = None
     return visitOrder
 
+
 node = Tree.getRoot()
+
+
 def printInorder(node):
     if node:
         printInorder(node.getLeftChild())
         print(node.getValue())
         printInorder(node.getRightChild())
+
 
 def printPreorder(node):
     if node:
@@ -143,12 +152,9 @@ def printPreorder(node):
         printInorder(node.getLeftChild())
         printInorder(node.getRightChild())
 
+
 def printPostorder(node):
     if node:
         printInorder(node.getLeftChild())
         printInorder(node.getRightChild())
         print(node.getValue())
-
-
-
-
