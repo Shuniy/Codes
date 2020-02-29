@@ -80,12 +80,12 @@ def reverseQueue(queue):
     reversedQueue = Queue()
     remaining_num_elements = queue.num_elements
     while remaining_num_elements > 0:
-        tail = queue.head
+        tail_head = queue.head
         i = 1
         while i < remaining_num_elements:
-            tail = tail.next
+            tail_head = tail_head.next
             i += 1
-        reverseQueue.enqueue(tail.value)
+        reversedQueue.enqueue(tail_head.value)
         remaining_num_elements -= 1
 
     return reverseQueue
