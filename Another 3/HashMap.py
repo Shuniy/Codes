@@ -122,3 +122,8 @@ print("one: {}".format(hash_map.get("one")))
 print("neo: {}".format(hash_map.get("neo")))
 print("three: {}".format(hash_map.get("three")))
 print("size: {}".format(hash_map.size()))
+
+hash_map.delete("one")
+
+print(hash_map.get("one"))
+print(hash_map.size())
