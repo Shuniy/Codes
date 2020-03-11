@@ -1,10 +1,9 @@
 class HashTable(object):
     def __init__(self):
-        self.table = [None] * 1000
+        self.table = [None] * 10000
 
     def store(self, string):
         self.table[self.calculate_hash_value(string)] = [string]
-        print(self.table)
 
     def lookup(self, string):
         hash_value = self.calculate_hash_value(string)
