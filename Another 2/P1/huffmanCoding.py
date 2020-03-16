@@ -160,7 +160,7 @@ class HuffmanEncoder(object):
         :param encoded_text: text to decoded, same as used to construct Huffman Encoder
         :return: text decoded with Huffman algorithm
         """
-        decode_text = ""
+        decoded_text = ""
         while len(encoded_text) > 0:
             i_decoder = 1
             while True:
@@ -169,7 +169,7 @@ class HuffmanEncoder(object):
                     encoded_text = encoded_text[i_decoder:]
                     break
                 i_decoder += 1
-        return decode_text
+        return decoded_text
 
     @staticmethod
     def _create_encoding_table(base_code : str, node : Node) -> list:
