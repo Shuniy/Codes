@@ -30,7 +30,7 @@ class Node(object):
     @staticmethod
     def fusion_nodes(node_1, node_2):
         """
-        Combines two nodes together, by using then as the leafs of a new node
+        Combines two nodes together, by using them as the leafs of a new node
         :param node_1: one of the nodes to fuse
         :param node_2: another node to fuse
         :return: nodes fused, being the leaves of a third parent node
