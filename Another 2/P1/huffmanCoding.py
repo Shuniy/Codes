@@ -15,6 +15,18 @@ Trim the Huffman Tree (remove the frequencies from the previously built tree).
 Encode the text into its compressed form.
 Decode the text from its compressed form.
 You then will need to create encoding, decoding, and sizing schemas.
+
+
+The implementation of the Huffmann Algorithm, has consisted as pseudo code tasks were resolved, in the construction of several classes, being:
+
+Node
+Queue
+Tree
+HuffmanEncoder
+This has allowed to have a more encapsulated development, as well as, providing the project with a more consistent structure. The compresing algorithm has shown, for the tested example a reduction of almost 50% of its size.
+
+Time and Space complexity
+In respects to the study of the time complexity, would be O(Ln), being L the maximum length of a codeword; more references see here. If I had not used a built it function for sorting the input that takes O(n*log(n)); ending up the time complexity being O(n*log(n)). In respects to the space complexity, it is directly related to the size of the employed alphabet, in this case k, resulting in O(k).
 """
 import sys
 import collections
