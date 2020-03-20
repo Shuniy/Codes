@@ -51,3 +51,7 @@ assert word_trie.exists('any')
 assert not word_trie.exists('these')
 assert not word_trie.exists('zzz')
 print('All tests passed!')
+
+"""
+The Trie data structure is part of the family of Tree data structures. It shines when dealing with sequence data, whether it's characters, words, or network nodes. When working on a problem with sequence data, ask yourself if a Trie is right for the job.
+"""
