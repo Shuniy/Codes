@@ -2,6 +2,11 @@
 Finding the Square Root of an Integer
 Find the square root of the integer without using any Python library. You have to find the floor value of the square root.
 
+The principle of this algorithm is to implement a variance of the binary search, due to the required time complexity. This time, though, instead of counting with an already sorted array, we use the natural consecution to use as our imaginary array; the implementation relies on dividing the search space in two parts and checking at each time if the mid point power of 2 is bigger or smaller than the given number (as in a dictionary, is the found word, bigger or smaller than our goal). Additionally, there is the inclusion of a little optimization trick, this is the fact that the square root of a natural number (starting from 2) is half or less, thus giving us a _speed boost by starting with end = number // 2.
+
+Time and Space complexity:
+In this case time complexity is O(log(n)), as we transverse the hypothetically ordered natural's number list by using a binary search approach. As for the space complexity, it is independent of the input, requiring solely pointers to different array locations; O(1).
+
 For example if the given number is 16, then the answer would be 4.
 
 If the given number is 27, the answer would be 5 because sqrt(5) = 5.196 whose floor value is 5.
