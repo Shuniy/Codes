@@ -1,4 +1,9 @@
 """
+This problem is tackler as the construction of a output list, issue form a single transverse of the elements. By using, several pointers, it is possible on a single transverse to properly order the provided array.
+
+Time and Space complexity
+In this case the time complexity is precisely, O(n). Analyzing the space complexity, due to the non usage of auxiliary tables (only a few pointers), it is of order O(1) (excluding the input space).
+
 Dutch National Flag Problem
 Given an input array consisting on only 0, 1, and 2, sort the array in a single traversal. You're not allowed to use any sorting function that Python provides.
 """
