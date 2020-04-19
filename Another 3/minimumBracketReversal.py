@@ -1,3 +1,14 @@
+"""
+Problem Statement
+Given an input string consisting of only { and }, figure out the minimum number of reversals required to make the brackets balanced.
+
+For example:
+
+For input_string = "}}}}, the number of reversals required is 2.
+For input_string = "}{}}, the number of reversals required is 1.
+If the brackets cannot be balanced, return -1 to indicate that it is not possible to balance them.
+"""
+
 class LinkedListNode:
 
     def __init__(self, value):
