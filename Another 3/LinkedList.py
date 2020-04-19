@@ -32,12 +32,45 @@ def createLinkedList1(inputList):
 
 def createLinkedList2(inputList):
     try:
-        head = node(inputList.pop(0))
-        tail = head
-        while len(inputList) > 0:
-            tail.next = node(inputList.pop(0))
-            tail = tail.next
+        head = None
+        tail = None
+        for value in input_list:
+            if head is None:
+                head = node(value)
+                tail = head
+            else:
+                tail.next = node(value)
+                tail = tail.next
     except IndexError:
         head = None
     return head
 
+
+def test_function(input_list, head):
+    try:
+        if len(input_list) == 0:
+            if head is not None:
+                print("Fail")
+                return
+        for value in input_list:
+            if head.value != value:
+                print("Fail")
+                return
+            else:
+                head = head.next
+        print("Pass")
+    except Exception as e:
+        print("Fail: " + e)
+
+
+input_list = [1, 2, 3, 4, 5, 6]
+head = createLinkedList2(input_list)
+test_function(input_list, head)
+
+input_list = [1]
+head = createLinkedList2(input_list)
+test_function(input_list, head)
+
+input_list = []
+head = createLinkedList2(input_list)
+test_function(input_list, head)
