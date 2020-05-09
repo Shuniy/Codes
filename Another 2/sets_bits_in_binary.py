@@ -1,4 +1,6 @@
 """
+Incredible hulk problem
+
 Given a number N, find number of set bits in binary representation of it
 N = 13
 Binary = 1101
