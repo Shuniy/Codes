@@ -171,11 +171,11 @@ class Heap:
             if min_element == left_child:
                 self.cbt[left_child_index] = parent
                 self.cbt[parent_index] = min_element
-                parent = left_child_index
+                parent_index = left_child_index
             elif min_element == right_child:
                 self.cbt[right_child_index] = parent
                 self.cbt[parent_index] = min_element
-                parent = right_child_index
+                parent_index = right_child_index
 
     def get_minimum(self):
         # Returns the minimum element present in the heap
@@ -203,7 +203,7 @@ Can you determine the time complexity for remove using the same process that we 
 
 Ans: the time complexity for remove is also O(log(n))
 """
-heap_size = 5
+heap_size = 8
 heap = Heap(heap_size)
 
 elements = [1, 2, 3, 4, 1, 2]

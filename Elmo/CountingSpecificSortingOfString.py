@@ -1,5 +1,5 @@
 """
-Case Specific Sorting of Strings¶
+Case Specific Sorting of Strings
 Problem statement
 Given a string consisting of uppercase and lowercase ASCII characters, write a function, case_sort, that sorts uppercase and lowercase letters separately, such that if the $i$th place in the original string had an uppercase character then it should not have a lowercase character after being sorted and vice versa.
 

@@ -37,6 +37,7 @@ def subsets(arr):
         results_mod = []
         for i, item in enumerate(results):
             if i == results.index(item):
+                print(results.index(item))
                 results_mod.append(item)
             else:
                 pass

@@ -35,13 +35,50 @@ def merge(X, Y):
 
 			Y[k - 1] = first
 
+def nextgap(gap):
+	if gap <= 1:
+		return 0
+
+	return gap // 2 + gap % 2
+
+def merge_gap(X, Y):
+	m = len(X)
+	n = len(Y)
+
+	x = min(n, m)
+
+	for i in range(x):
+		if X[n - i - 1] > Y[i]:
+			X[n - i - 1], Y[i] = Y[i], X[n - i - 1]
+
+	gap = nextgap(n)
+
+	while gap > 0:
+		i = 0
+
+		while i + gap < n:
+			if X[i] > X[i + gap]:
+				X[i], X[i + gap] = X[i + gap], X[i]
+
+			i += 1
+		gap = nextgap(gap)
+
+	while gap > 0:
+		i = 0
+
+		while i + gap < n:
+			if Y[i] > Y[i + gap]:
+				Y[i], Y[i + gap] = Y[i + gap], Y[i]
+
+			i += 1
+		gap = nextgap(gap)
 
 if __name__ == '__main__':
 
 	X = [1, 4, 7, 8, 10]
 	Y = [2, 3, 9]
-
-	merge(X, Y)
+	merge_gap(X, Y)
+	#merge(X, Y)
 
 	print("X:", X)
 	print("Y:", Y)

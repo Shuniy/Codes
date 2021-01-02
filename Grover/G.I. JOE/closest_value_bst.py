@@ -9,12 +9,14 @@ def find_closest_value_in_bst_helper(tree, target, closest):
         return closest
     if abs(target - closest) > abs(target - tree.value):
         closest = tree.value
-    if target < tree.value:
-        return find_closest_value_in_bst_helper(tree.left, target, closest)
-    elif target > tree.value:
+
+    if target > tree.value:
         return find_closest_value_in_bst_helper(tree.right, target, closest)
-    else:
-        return closest
+
+    elif target < tree.value:
+        return find_closest_value_in_bst_helper(tree.left, target, closest)
+
+    return closest
 
 # Recursively
 def find_closest_value(tree, target):
@@ -25,11 +27,11 @@ def find_closest_value(tree, target):
 def find_closest_value_iterative(tree, target, closest):
     current_node = tree
     while current_node is not None:
-        if abs(target - closest) > abs(target - tree.value):
+        if abs(target - closest) > abs(target - current_node.value):
             closest = current_node.value
-        if target < tree.value:
+        if target < current_node.value:
             current_node = current_node.left
-        elif target > tree.value:
+        elif target > current_node.value:
             current_node = current_node.right
         else:
             break

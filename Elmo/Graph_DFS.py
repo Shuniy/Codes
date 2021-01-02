@@ -62,17 +62,17 @@ def dfs_search(root_node, search_value):
         for node_next in node.children:
             no_new_children = True
 
-        if node_next.value not in seen_elements:
-            node = node_next
-            node_value = node.value
+            if node_next.value not in seen_elements:
+                node = node_next
+                node_value = node.value
 
-            if node_value == search_value:
-                return node
+                if node_value == search_value:
+                    return node
 
-            seen_elements.append(node_value)
-            stack.append(node_value)
-            no_new_children = False
-            break
+                seen_elements.append(node_value)
+                stack.append(node_value)
+                no_new_children = False
+                break
 
         if no_new_children:
             stack.pop()

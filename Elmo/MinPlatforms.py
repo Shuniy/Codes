@@ -18,6 +18,34 @@ def min_platforms(arrival, departure) -> int:
             num_platforms = temp_num_platforms
     return num_platforms
 
+
+def min_platforms(arrival, departure):
+
+    if len(arrival) != len(departure):
+        return
+
+    arrival.sort()
+    departure.sort()
+
+    count = 1
+    i = 1
+    j = 0
+
+    platform = 1
+    while i < len(arrival) and j < len(departure):
+        if arrival[i] < departure[j]:
+            count += 1
+            i += 1
+
+        elif arrival[i] >= departure[j]:
+            count -= 1
+            j += 1
+
+        if count > platform:
+            platform = count
+
+    return platform
+
 def test_function(test_case):
     arrival = test_case[0]
     departure = test_case[1]

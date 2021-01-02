@@ -65,11 +65,11 @@ class Tree(object):
             comparison = self.compare(node, newNode)
             if comparison == 0:
                 break
-            elif comaprison == -1:
+            elif comparison == -1:
                 if node.hasLeftChild():
                     node = node.getLeftChild()
                 else:
-                    node = setLeftChild(newNode)
+                    node.setLeftChild(newNode)
                     break
             else:
                 if node.hasLeftChild():
