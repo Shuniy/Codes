@@ -1,0 +1,7 @@
+PINK: str = "#e2979c"
+RED = "#e7305b"
+GREEN = "#9bdeac"
+WORK_MIN = 25
+FONT_NAME = 'Roboto'
+SHORT_BREAK_MIN = 5
+LONG_BREAK_MIN = 20
