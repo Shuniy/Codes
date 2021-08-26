@@ -1,3 +1,8 @@
+"""
+Medium - Microsoft
+"""
+
+
 def partition(head, tail, new_head, new_tail):
     pivot = tail
     prev = None
@@ -52,6 +57,6 @@ def quickSortRecur(head, tail):
 
 
 def quickSort(head):
-    #return head after sorting
+    # return head after sorting
     temp = quickSortRecur(head, Tail(head))
     return temp

@@ -20,18 +20,18 @@ hash_table = HashTable()
 
 # Test calculate_hash_value
 # Should be 8568
-print(hash_table.calculate_hash_value('UDACITY'))
+print(hash_table.calculate_hash_value('ZippySphinx'))
 
 # Test lookup edge case
 # Should be -1
-print(hash_table.lookup('UDACITY'))
+print(hash_table.lookup('ZippySphinx'))
 
 # Test store
-hash_table.store('UDACITY')
+hash_table.store('ZippySphinx')
 # Should be 8568
-print(hash_table.lookup('UDACITY'))
+print(hash_table.lookup('ZippySphinx'))
 
 # Test store edge case
-hash_table.store('UDACIOUS')
+hash_table.store('DELICIOUS')
 # Should be 8568
-print(hash_table.lookup('UDACIOUS'))
+print(hash_table.lookup('DELICIOUS'))
