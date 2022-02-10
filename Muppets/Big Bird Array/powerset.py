@@ -22,7 +22,6 @@ def powerset(arr, setSize):
     
     for counter in range(powerSetSize):
         for j in range(setSize):
-            print("Shifting : ", 1<<j)
             if counter & (1 << j):
                 print(arr[j], end="")
         print()
