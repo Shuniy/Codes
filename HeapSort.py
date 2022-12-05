@@ -1,76 +1,85 @@
 """
-Heapsort
-A heapsort is an in-place sorting algorithm that treats an array like a binary tree and moves the largest values to the end of the heap until the full array is sorted.
+Heap sort is a comparison based sorting technique based on Binary Heap data structure. 
+It is similar to selection sort where we first find the maximum element and place 
+the maximum element at the end. We repeat the same process for remaining element.
 
-The main steps in a heapsort are:
+What is Binary Heap?
+Let us first define a Complete Binary Tree. A complete binary tree is a binary tree 
+in which every level, except possibly the last, is completely filled, and all nodes 
+are as far left as possible (Source Wikipedia)
 
-Convert the array into a maxheap (a complete binary tree with decreasing values)
-Swap the top element with the last element in the array (putting it in it's correct final position)
-Repeat with arr[:len(arr)-1] (all but the sorted elements)
+A Binary Heap is a Complete Binary Tree where items are stored in a special order 
+such that value in a parent node is greater(or smaller) than the values in its two 
+children nodes. The former is called as max heap and the latter is called min heap. 
+The heap can be represented by binary tree or array.
+
+Why array based representation for Binary Heap?
+Since a Binary Heap is a Complete Binary Tree, it can be easily represented as array 
+and array based representation is space efficient. If the parent node is stored at 
+index I, the left child can be calculated by 2 * I + 1 and right child by 
+2 * I + 2 (assuming the indexing starts at 0).
+
+Heap Sort Algorithm for sorting in increasing order:
+1. Build a max heap from the input data.
+2. At this point, the largest item is stored at the root of the heap. Replace it 
+with the last item of the heap followed by reducing the size of heap by 1. Finally, 
+heapify the root of tree.
+3. Repeat above steps while size of heap is greater than 1.
+
+How to build the heap?
+Heapify procedure can be applied to a node only if its children nodes are heapified. 
+So the heapification must be performed in the bottom up order.
+
+Time Complexity: Time complexity of heapify is O(Logn). Time complexity of 
+createAndBuildHeap() is O(n) and overall time complexity of Heap Sort is O(nLogn).
+
+Applications of HeapSort
+1. Sort a nearly sorted (or K sorted) array
+2. k largest(or smallest) elements in an array
+
+Heap sort algorithm has limited uses because Quicksort and Mergesort are better in 
+practice. Nevertheless, the Heap data structure itself is enormously used. See
+Applications of Heap Data Structure
 """
+
+def heapify(arr, n, i):
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[i] < arr[l]:
+        largest = l
+
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+
+    if largest != i:
+        arr[i],arr[largest] = arr[largest],arr[i]
+
+        heapify(arr, n, largest)
+
 def heapsort(arr):
-    arr_sorted = []
+    n = len(arr)
 
-    for i in range(len(arr)):
-        arr = heapify(arr, i)
+    for i in range(n, -1, -1):
+        heapify(arr, n, i)
 
-    swap_position = len(arr) - 1
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]
+        heapify(arr, i, 0)
 
-    for i in range(len(arr) - 1):
-        bigger_value = arr[0]
-        arr[0] = arr[swap_position]
-        arr[swap_position] = bigger_value
+arr = list()
+size = input("Enter size of the array : ")
 
-        for i in range(swap_position):
-            arr = heapify(arr, i)
-        swap_position -= 1
+print("Enter elements of array : ")
+for i in range(int(size)):
+    c = input()
+    arr.append(int(c))
 
-    return arr
+print("Entered array is : ")
+print(arr)
 
-def heapify(arr, index):
-    if index == 0:
-        return arr
+heapsort(arr)
 
-    index_parent = (index - 1) // 2
-    value_parent = arr[index_parent]
-    value_children = arr[index]
-
-    if value_children > value_parent:
-        arr[index_parent] = value_children
-        arr[index] = value_parent
-        arr = heapify(arr, index_parent)
-
-    else:
-        pass
-
-    return arr
-
-def test_function(test_case):
-    heapsort(test_case[0])
-    if test_case[0] == test_case[1]:
-        print("Pass")
-    else:
-        print("False")
-
-
-arr = [3, 7, 4, 6, 1, 0, 9, 8, 9, 4, 3, 5]
-solution = [0, 1, 3, 3, 4, 4, 5, 6, 7, 8, 9, 9]
-
-test_case = [arr, solution]
-
-test_function(test_case)
-
-arr = [5, 5, 5, 3, 3, 3, 4, 4, 4, 4]
-solution = [3, 3, 3, 4, 4, 4, 4, 5, 5, 5]
-test_case = [arr, solution]
-test_function(test_case)
-
-arr = [99]
-solution = [99]
-test_case = [arr, solution]
-test_function(test_case)
-
-arr = [0, 1, 2, 5, 12, 21, 0]
-solution = [0, 0, 1, 2, 5, 12, 21]
-test_case = [arr, solution]
-test_function(test_case)
+print("Sorted array is : ")
+print(arr)

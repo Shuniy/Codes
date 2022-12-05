@@ -1,1 +1,0 @@
-nextNumber + n
