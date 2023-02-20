@@ -40,9 +40,4 @@ n = len(arr)
 k = 15
 
 print("Length = " , LargestSubarraySumK(arr, n, k))
-
-arr = [ 10, 5, 2, 7, 1, 9 ]
-n = len(arr)
-k = 15
-
 print("Length = " , LargestSubarraySumKHashmap(arr, n, k))
