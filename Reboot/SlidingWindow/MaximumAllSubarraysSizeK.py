@@ -1,33 +1,37 @@
 
 import collections
 
-def MaximumAllSubarraySizeK(arr: list[int], k: int) -> list[int]:
-    n = len(arr)
+
+def MaximumAllSubnumsaySizeK(nums: list[int], k: int) -> list[int]:
+    n = len(nums)
     result: list[int] = []
-    queue = collections.deque(arr)
+    queue = collections.deque([])
     i = 0
     for j in range(n):
-        while queue and queue[0] < arr[j]:
-            _ = queue.popleft()
+        while queue and queue[-1] < nums[j]:
+            _ = queue.pop()
+        queue.append(nums[j])
         if j - i + 1 < k:
             continue
         else:
             result.append(queue[0])
-            if queue[0] == arr[i]:
+            if queue[0] == nums[i]:
                 _ = queue.popleft()
             i += 1
-            
+
     return result
-        
 
-arr = [1, 3, -1, -3, 5, 3, 6, 7]
-k = 3
-print(MaximumAllSubarraySizeK(arr, k))
 
-arr = [12, 1, 78, 90, 57, 89, 56]
+nums = [1, 3, -1, -3, 5, 3, 6, 7]
 k = 3
-print(MaximumAllSubarraySizeK(arr, k))
+print(MaximumAllSubnumsaySizeK(nums, k))
 
-arr = [1,3,1,2,0,5]
+nums = [12, 1, 78, 90, 57, 89, 56]
 k = 3
-print(MaximumAllSubarraySizeK(arr, k))
+print(MaximumAllSubnumsaySizeK(nums, k))
+
+nums = [1, 3, 1, 2, 0, 5]
+k = 3
+print(MaximumAllSubnumsaySizeK(nums, k))
+
+
