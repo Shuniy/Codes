@@ -1,0 +1,80 @@
+extension <#ClassName#> {
+    
+}
+
+struct <#ViewName#>: View {
+    @ObservedObject private var <#observedObjectName#>: <#ClassName#>
+    private var <#variableName#>: <#DataType#>
+
+    init(<#observedObjectName#>: <#ClassName#>, <#variableName#>: <#DataType#>) {
+        self.<#observedObjectName#> = <#observedObjectName#>
+        self.<#variableName#> = <#variableName#>
+    }
+
+    var body: some View {
+        <#SomeStack#> {
+            
+        }
+    }
+}
+
+class <#ObservableClassName#>: ObservableObject {
+    @Published private var <#variableName#>: <#DataType#>
+    
+    init(<#variableName#>: <#DataType#>) {
+        self.<#variableName#> = <#variableName#>
+    }
+}
+
+// FIXME: - <#What to Fix#>
+
+/**
+ <#Summary#>
+ - parameter <#property#>:    <#property role#>
+ - parameter <#property#>:    <#property role#>
+ - parameter <#property#>:    <#property role#>
+ - parameter <#property#>:    <#property role#>
+ - warning: <#Warning if any#>
+ - returns: <#Function Return Type and Value#>
+ - throws: <#Exception Name and Detail#>
+ 
+ - Note: <#Note 1 for Notes Section#>
+ - Note: <#Note 2 for Notes Section#>
+ 
+ - <#Discussion Point1#>
+ - <#Discussion Point2#>
+ */
+
+
+ /// <#Summary#>
+    /// - <#Discussion Point 1#>
+    /// - <#Discussion Point 2#>
+    ///
+    /// <#UnPointed Discussion Statement#>
+    ///
+    /// Usage:
+    ///
+    ///     <#print(hello("Markdown")) // Hello, Markdown!#>
+    ///
+    /// - Author: Shubham Kumar
+    /// - Version: 0.1
+    /// - Parameters:
+    ///     - <#Parameter1#>: <#Its role#>
+    ///     - <#Parameter2#>: <#Its Role#>
+    /// - Returns: concatenated Two Strings
+    /// - Throws: an error of type Error Concatenated
+    /// - Warning: <#Warning it shows#>
+    ///  - Note: [<#Link Name#>](<#URL#>)
+    ///  - Note: <#Any Note#>
+    ///  - Important: <#make sure to do something ....#>
+    ///  ```
+    ///  <#Some Example Code#>
+    ///  ```
+
+
+
+// MARK: - <#Mark Title#>
+
+// Step <#Number#>: - <#Action#>
+
+// TODO: - <#TODO Task#>
