@@ -81,7 +81,7 @@ print(f"Maximum Profit from items  with {weights} and values {values} Recursion:
 # Convert the recursive code into for loop
 
 
-def ZeroOneKnapsackProblemTopDown(capacity, weights, values):
+def ZeroOneKnapsackProblemBottomUp(capacity, weights, values):
     if capacity == 0:
         return 0
 
@@ -96,9 +96,11 @@ def ZeroOneKnapsackProblemTopDown(capacity, weights, values):
     for i in range(1, len(weights) + 1):
         for j in range(1, capacity + 1):
             if weights[i - 1] <= j:
-                dp[i][j] = max(dp[i - 1][j], values[i - 1] +
-                               dp[i - 1][j - weights[i - 1]])
+                # include or not
+                dp[i][j] = max(values[i - 1] + dp[i - 1]
+                               [j - weights[i - 1]], dp[i - 1][j])
             else:
+                # skip
                 dp[i][j] = dp[i - 1][j]
 
     return dp[len(weights)][capacity]
@@ -107,10 +109,10 @@ def ZeroOneKnapsackProblemTopDown(capacity, weights, values):
 capacity = 7
 weights = [1, 3, 4, 5]
 values = [1, 4, 5, 7]
-print(f"Maximum Profit from items  with {weights} and values {values} Top Down: ", ZeroOneKnapsackProblemTopDown(
+print(f"Maximum Profit from items  with {weights} and values {values} Top Down: ", ZeroOneKnapsackProblemBottomUp(
     capacity, weights[:], values[:]))
 capacity = 50
 weights = [10, 20, 30]
 values = [60, 100, 120]
-print(f"Maximum Profit from items  with {weights} and values {values} Top Down: ", ZeroOneKnapsackProblemTopDown(
+print(f"Maximum Profit from items  with {weights} and values {values} Top Down: ", ZeroOneKnapsackProblemBottomUp(
     capacity, weights[:], values[:]))
