@@ -1,3 +1,6 @@
+def LongestSubstringkUniqueCharacters(string: str, k: int) -> int:
+    i: int = 0
+    maxLen = float("-inf")
 
 def LongestSubstringkUniqueCharacters(string: str, k: int) -> int:
     i = 0

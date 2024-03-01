@@ -42,6 +42,9 @@ practice. Nevertheless, the Heap data structure itself is enormously used. See
 Applications of Heap Data Structure
 """
 
+import random
+
+
 def heapify(arr, n, i):
     largest = i
     l = 2 * i + 1
@@ -54,9 +57,10 @@ def heapify(arr, n, i):
         largest = r
 
     if largest != i:
-        arr[i],arr[largest] = arr[largest],arr[i]
+        arr[i], arr[largest] = arr[largest], arr[i]
 
         heapify(arr, n, largest)
+
 
 def heapsort(arr):
     n = len(arr)
@@ -68,12 +72,13 @@ def heapsort(arr):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
 
+
 arr = list()
-size = input("Enter size of the array : ")
+size = int(input("Enter size of the array : "))
 
 print("Enter elements of array : ")
-for i in range(int(size)):
-    c = input()
+for i in range(size):
+    c = random.randrange(0, size)
     arr.append(int(c))
 
 print("Entered array is : ")

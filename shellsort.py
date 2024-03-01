@@ -12,40 +12,53 @@ the value of h until it becomes 1. An array is said to be h-sorted if all sublis
 of every h’th element is sorted.
 """
 
-def shellsort(arr): 
-  
-    n = len(arr) 
+import random
+import time
+
+
+def shellSort(arr):
+    n = len(arr)
+    gap = n // 2
+    while gap > 0:
+        for i in range(gap, len(arr)):
+            toChange = arr[i]
+            j = i
+            while j >= gap and toChange < arr[j - gap]:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = toChange
+        gap = gap // 2
+
+
+def shellsort(arr):
+    n = len(arr)
     gap = n//2
-  
-    while gap > 0: 
-  
-        for i in range(gap,n): 
-  
-            temp = arr[i] 
-            j = i 
-            while  j >= gap and arr[j-gap] >temp: 
-                arr[j] = arr[j-gap] 
-                j -= gap 
-  
-            arr[j] = temp 
+    while gap > 0:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j-gap] > temp:
+                arr[j] = arr[j-gap]
+                j -= gap
+            arr[j] = temp
         gap //= 2
 
+
+size = int(input("Enter size of the array : "))
 arr = list()
-size = input("Enter size of the array : ")
 
-print("Enter elements of array : ")
-for i in range(int(size)):
-    c = input()
-    arr.append(int(c))
-    
-print("Entered array is : ")
-print(arr)
+for i in range(size):
+    c = random.randrange(0, size)
+    arr.append(c)
 
-shellsort(arr)
+# print("Entered array is : ")
+# print(arr)
+
+# shellsort(arr)
+shellSort(arr)
 
 print("Sorted array is : ")
-print(arr)      
-import time
+print(arr)
 start = time.time()
 "the code you want to test stays here"
 end = time.time()

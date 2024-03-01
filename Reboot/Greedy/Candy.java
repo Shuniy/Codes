@@ -5,6 +5,6 @@ public class Candy {
         
     }
     public static int candy(int[] ratings) {
-
+        return 0;
     }
 }

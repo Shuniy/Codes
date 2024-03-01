@@ -10,7 +10,7 @@ def maximumSubSubarraySizeK(arr: list, k: int) -> int:
         if j - i + 1 < k:
             continue
         else:
-            maxSum = max(currentSum, maxSum)
+            maxSum = max(maxSum, currentSum)
             currentSum -= arr[i]
             i += 1
     return maxSum

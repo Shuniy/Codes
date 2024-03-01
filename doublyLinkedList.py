@@ -1,242 +1,253 @@
-"""
-Doubly Linked List
-"""
-class Node:
-    def __init__(self, value) -> None:
-        self.value = value
-        self.next = None
-        self.prev = None
+from typing import Optional
 
-class DoublyLinkedList:
-    def __init__(self) -> None:
-        self.head = None
-        self.tail = None
-        self.length = 0
 
-    def check(self, pos):
-        if pos < 0 or pos > self.length:
-            print('Failed, Check Position !')
-            return True
-        return False
+class Node(object):
+    def __init__(self, value: object | None = None) -> None:
+        self.value: object = value
+        self.next: Node | None = None
+        self.prev: Optional[Node] = None
 
-    def isEmpty(self):
-        return self.length == 0
+    def __str__(self) -> str:
+        nextValue: Optional[object] = None
+        prevValue: Optional[object] = None
+        if self.next:
+            nextValue = self.next.value
 
-    def getLength(self):
-        """Return length of the linked list"""
+        if self.prev:
+            prevValue = self.prev.value
+        return f'{prevValue} ---> {self.value} ---> {nextValue}'
+
+
+class DoublyLinkedList(object):
+    def __init__(self, initialItems: list[object]) -> None:
+        self.head: Optional[Node] = None
+        self.tail: Optional[Node] = None
+        self.length: int = 0
+        if len(initialItems) > 0:
+            for item in initialItems:
+                self.insertAtTail(item)
+            self.length = len(initialItems)
+
+    def getHead(self) -> object:
+        if self.head:
+            return self.head.value
+        else:
+            return None
+
+    def getTail(self) -> object:
+        if self.tail:
+            return self.tail.value
+        else:
+            return None
+
+    def getLength(self) -> int:
         return self.length
 
-    def getValueAtPosition(self, pos):
-        """Returns value at position, with index starting at 1"""
-        if self.check(pos):
-            return
+    def asArray(self) -> list[object]:
+        result: list[object] = []
+        temp = self.head
+        while temp:
+            result.append(temp.value)
+            temp = temp.next
+        del temp
+        return result
 
-        if pos == 1:
-            return self.getHead()
+    def asRevertedArray(self) -> list[object]:
+        result: list[object] = []
+        temp = self.tail
+        while temp:
+            result.append(temp.value)
+            temp = temp.prev
+        del temp
+        return result
 
-        if pos == self.length:
-            return self.getTail()
-
-        if pos > self.length // 2:
-            temp = self.tail
-            print(self.tail)
-            curr = pos
-            while self.length -  curr - 1:
-                print(temp.value)
-                curr -= 1
-                temp = temp.prev
-
-            return temp.value
-        else:
-            temp = self.head
-            curr = pos
-            while curr - 1:
-                curr -= 1
-                temp = temp.next
-
-            return temp.value
-
-    def setValueAtPosition(self, pos, value):
-        """Changes value at position, with index starting at 1"""
-        if self.check(pos):
-            return
-
-        if pos == 1:
-            self.setHead(value)
-            return
-
-        if pos == self.length:
-            self.setTail(value)
-            return
-
-        if pos > self.length // 2:
-            temp = self.tail
-            curr = pos
-            while self.length - curr:
-                curr -= 1
-                print(temp.value)
-                temp = temp.prev
-
-            temp.value = value
-        else:
-            temp = self.head
-            curr = pos
-            while curr:
-                curr -= 1
-                temp = temp.next
-
-            temp.value = value
-
-    def getHead(self):
-        return self.head.value
-
-    def getTail(self):
-        """return tail"""
-        return self.tail.value
-
-    def setHead(self, value):
-        """
-        Changes the value of head but doesn't add a new Node
-        """
-        if self.head is None:
-            print('No head is found, linked list is empty')
-            return
-        else:
-            self.head.value = value
-
-    def setTail(self, value):
-        """
-        Changes the value of tail but doesn't add a new Node
-        """
-        if self.head is None:
-            print('No tail is found, linked list is empty')
-            return
-        else:
-            self.tail.value = value
-
-    def makeHead(self, value):
-        """Make Head"""
-        self.head = Node(value)
-
-    def insert(self, value):
-        self.length += 1
-        if self.head is None:
-            self.makeHead(value)
-            self.tail = self.head
-            return
-        else:
-            newNode = Node(value)
-            newNode.next = self.head
-            self.head.prev = newNode
+    def insertAtHead(self, value: object) -> None:
+        newNode = Node(value)
+        if not self.head:
             self.head = newNode
-            return
+            self.tail = newNode
+        else:
+            self.head.prev = newNode
+            newNode.next = self.head
+            self.head = newNode
+        self.length += 1
+        return
 
-    def delete(self):
-        if self.head is None:
-            print('Nothing to Delete')
-            return
+    def insertAtTail(self, value: object) -> None:
+        newNode = Node(value)
+        if not self.tail:
+            self.tail = newNode
+            self.head = newNode
+        else:
+            self.tail.next = newNode
+            newNode.prev = self.tail
+            self.tail = newNode
+        self.length += 1
+        return
+
+    def removeFromHead(self) -> Optional[object]:
+        if not self.head:
+            self.length = 0
+            return None
         else:
             self.length -= 1
             temp = self.head
             self.head = self.head.next
-            self.head.prev = None
-            del temp
-            return 
+            if self.head:
+                self.head.prev = None
+            return temp.value
 
-    def insertAtHead(self, value):
-        self.insert(value)
-        return
-
-    def insertAtTail(self, value):
-        if self.head is None:
-            self.insert()
-
-        newNode = Node(value)
-        newNode.prev = self.tail
-        self.tail.next = newNode
-        self.tail = newNode
-        return 
-
-    def insertAtPosition(self, value, pos):
-        if self.check(pos):
-            return
-
-        if pos > self.length // 2:
-            curr = pos
+    def removeFromTail(self) -> Optional[object]:
+        if not self.tail:
+            self.length = 0
+            return None
+        else:
+            self.length -= 1
             temp = self.tail
+            self.tail = self.tail.prev
+            if self.tail:
+                self.tail.next = None
+            return temp.value
 
-            while curr - 1:
-                curr -= 1
-                temp = temp.prev
-
-            newNode = Node(value)
-
-        else:
-            pass 
-
-        
-
-    def insertBeforeNode(self, toInsert, beforeNode):
-        pass
-
-    def deleteAtHead(self):
-        self.delete()
-        return
-
-    def deleteAtEnd(self):
-        pass
-
-    def deleteAtPosition(self, pos):
-        if self.check(pos):
+    def insertAtIndex(self, index: int, value: object) -> None:
+        newNode = Node(value)
+        if not self.head or not self.tail:
+            self.head = newNode
+            self.tail = newNode
+            print("Empty Linked List, Inserting at Head")
+            return
+        if index == 0:
+            self.insertAtHead(value=value)
+            return
+        if index >= self.length:
+            self.insertAtTail(value=value)
             return
 
-    def deleteBeforeNode(self, beforeNode):
-        pass
-
-    def print(self):
-        """Print the linked list from Head"""
-        if self.head is None:
-            return self.head.value
-        else:
+        temp: Optional[Node] = None
+        i: int = 0
+        if index <= self.length // 2:
+            # Insert from head
+            i: int = 0
             temp = self.head
-            while temp and temp.next:
-                print(temp.value, end='->')
+            while i < index and temp:
                 temp = temp.next
+                i += 1
+        else:
+            # Insert from tail
+            i: int = self.length - 1
+            temp = self.tail
+            while i > index and temp:
+                temp = temp.prev
+                i -= 1
 
-            print(temp.value)
+        if temp:
+            newNode.prev = temp.prev
+            newNode.next = temp
+            if temp.prev:
+                temp.prev.next = newNode
+            temp.prev = newNode
+        self.length += 1
+        del temp, i
+        return
 
-    def printBack(self):
-        pass
+    def removeFromIndex(self, index: int) -> object:
+        if not self.head or not self.tail:
+            print("Linked List Empty")
+            return None
+        if index == 0:
+            self.removeFromHead()
+            return
+        if index >= self.length - 1:
+            self.removeFromTail()
+            return
+        temp: Optional[Node] = None
+        i: int = 0
+        if index <= self.length // 2:
+            # delete from head
+            i = 0
+            temp = self.head
+            while i < index and temp:
+                temp = temp.next
+                i += 1
+        else:
+            # delete from tail
+            i = self.length - 1
+            temp = self.tail
+            while i >= index and temp:
+                temp = temp.prev
+                i -= 1
+        if temp:
+            newTemp = temp
+            if temp.prev:
+                temp.prev.next = newTemp.next
+            if temp.next:
+                temp.next.prev = newTemp.prev
+        self.length -= 1
+        deletedItem = None
+        if temp:
+            deletedItem = temp.value
+        del temp, i
+        return deletedItem
+
+    def changeElementAtIndex(self, index: int, newValue: object):
+        if not self.head or not self.tail:
+            newNode = Node(value=newValue)
+            self.head = newNode
+            self.tail = newNode
+            print("Empty Linked List, Inserting at Head")
+            return
+        if index == 0:
+            self.head.value = newValue
+            return
+        if index >= self.length:
+            self.tail.value = newValue
+            return
+        i: int = 0
+        if index <= self.length // 2:
+            # traverse from head
+            i = 0
+            temp = self.head
+            while i < index and temp:
+                temp = temp.next
+                i += 1
+        else:
+            # traverse from tail
+            i = self.length - 1
+            temp = self.tail
+            while i > index and temp:
+                temp = temp.prev
+                i -= 1
+        if temp:
+            temp.value = newValue
+        return
 
 
-# creating a linked list object
-doublyLinkedList = DoublyLinkedList()
-
-# insert and delete
-doublyLinkedList.insert(5)
-doublyLinkedList.insert(6)
-doublyLinkedList.insert(7)
-doublyLinkedList.insert(8)
-doublyLinkedList.insertAtHead(9)
-doublyLinkedList.insertAtTail(10)
-print('Length of the linked list', doublyLinkedList.getLength())
-print('Head of the linked list', doublyLinkedList.getHead())
-print('Tail of the linked list', doublyLinkedList.getTail())
-print('Value at position 3 of the linked list', doublyLinkedList.getValueAtPosition(3))
-print('Value at position 2 of the linked list', doublyLinkedList.getValueAtPosition(2))
-print('Value at position 1 of the linked list', doublyLinkedList.getValueAtPosition(1))
-print('Value at position 4 of the linked list', doublyLinkedList.getValueAtPosition(4))
-doublyLinkedList.print()
-
-doublyLinkedList.delete()
-doublyLinkedList.delete()
-print('Value at position 1 of the linked list', doublyLinkedList.getValueAtPosition(1))
-print('Value at position 2 of the linked list', doublyLinkedList.getValueAtPosition(2))
-print('Length of the linked list', doublyLinkedList.getLength())
-print('Head of the linked list', doublyLinkedList.getHead())
-print('Tail of the linked list', doublyLinkedList.getTail())
-doublyLinkedList.print()
-
-
-
-print('Is linked list empty : ', doublyLinkedList.isEmpty())
+doublyLinkedList: DoublyLinkedList = DoublyLinkedList(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9])
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())
+print("Length of Linked List: ", doublyLinkedList.getLength())
+doublyLinkedList.insertAtHead(0)
+doublyLinkedList.insertAtTail(0)
+doublyLinkedList.insertAtHead(99)
+doublyLinkedList.insertAtTail(99)
+print("Length of Linked List: ", doublyLinkedList.getLength())
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())
+print("Deleted Item from Head: ", doublyLinkedList.removeFromHead())
+print("Deleted Item from Tail: ", doublyLinkedList.removeFromTail())
+print("Length of Linked List: ", doublyLinkedList.getLength())
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())
+doublyLinkedList.insertAtIndex(4, 99)
+doublyLinkedList.insertAtIndex(7, 99)
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())
+print("Deleted Linked List Item: ", doublyLinkedList.removeFromIndex(4))
+print("Deleted Linked List Item: ", doublyLinkedList.removeFromIndex(7))
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())
+doublyLinkedList.changeElementAtIndex(4, 16)
+doublyLinkedList.changeElementAtIndex(7, 61)
+print("Linked List from Head: ", doublyLinkedList.asArray())
+print("Linked List from Tail: ", doublyLinkedList.asRevertedArray())

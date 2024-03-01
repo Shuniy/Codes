@@ -27,32 +27,58 @@ time of O(n2) because of the series of swaps required for each insertion. Refer
 this for implementation. 
 """
 
+
+import random
+
+
+def insertionSortRecursive(arr, i=1):
+    if len(arr) == 1:
+        return
+    j = i - 1
+    toChange = arr[i]
+    while j >= 0 and toChange < arr[j]:
+        arr[j + 1] = arr[j]
+        j -= 1
+    arr[j + 1] = toChange
+    if i + 1 < len(arr):
+        insertionSortRecursive(arr, i + 1)
+    else:
+        return
+
+
+def insertionSort(arr):
+    for i in range(1, len(arr)):
+        toChange = arr[i]
+        j = i - 1
+        while j >= 0 and toChange < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = toChange
+
+
 def insertionsort(arr):
-    for i in range(1, len(arr)): 
-  
-        key = arr[i] 
-        j = i-1
-        
-        while j >= 0 and key < arr[j] : 
-                arr[j + 1] = arr[j] 
-                j -= 1
-        arr[j + 1] = key   
-        
-size = input("Enter size of the array : ")
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+
+size = int(input("Enter size of the array : "))
 arr = list()
 
-print("Enter elements of array : ")
-for i in range(int(size)):
-    c = input()
+for i in range(size):
+    c = random.randrange(0, size)
     arr.append(c)
 
-print("Entered array is : ")
-print(arr)
+# print("Entered array is : ")
+# print(arr)
 
-insertionsort(arr)
+# insertionsort(arr)
+insertionSort(arr)
+# insertionSortRecursive(arr)
 
 print("Sorted array is : ")
-print(arr)            
-        
-            
-            
+print(arr)

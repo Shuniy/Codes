@@ -1,7 +1,4 @@
 # Min Heap, if want to make Max heap then change the signs in heapify methods
-from Elmo.HeapSort import heapify
-from _typeshed import Self
-
 
 class Heap:
     def __init__(self, size) -> None:
@@ -38,7 +35,7 @@ class Heap:
 
     def _upHeapify(self, index):
         if index == 0:
-            return 
+            return
 
         indexParent = self._parentIndex(index)
         parentValue = self._parentValue(index)
@@ -62,7 +59,8 @@ class Heap:
         parentIndex = 0
         # self.nextIndex is still not reduced and point to swapped removed element
         while parentIndex < self.nextIndex:
-            leftChildIndex, rightChildIndex = self._childrenIndices(parentIndex)
+            leftChildIndex, rightChildIndex = self._childrenIndices(
+                parentIndex)
             parentValue = self.heap[parentIndex]
             leftChild = None
             rightChild = None
@@ -76,7 +74,7 @@ class Heap:
 
             if leftChild:
                 minElement = min(parentValue, leftChild)
-            
+
             if rightChild:
                 minElement = min(parentValue, rightChild)
 

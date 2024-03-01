@@ -95,6 +95,7 @@ As always we will use Python lists like C-style arrays to make the implementatio
 
 """
 
+
 class Heap:
     def __init__(self, initial_size):
         self.cbt = [None for _ in range(initial_size)]
@@ -160,10 +161,10 @@ class Heap:
             if right_child_index < self.next_index:
                 right_child = self.cbt[right_child_index]
 
-            if left_child is not None:
+            if parent is not None and left_child is not None:
                 min_element = min(parent, left_child)
 
-            if right_child is not None:
+            if parent is not None and right_child is not None:
                 min_element = min(parent, right_child)
 
             if min_element == parent:
@@ -194,6 +195,7 @@ class Heap:
         self.cbt[self.next_index] = to_remove
         self._down_heapify()
         return to_remove
+
 
 """
 For min-heaps, we remove the smallest element from our heaps. For max-heaps, we remove the largest element from the heap.

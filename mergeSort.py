@@ -39,49 +39,86 @@ every node from the head to i’th node as we don’t have a continuous block of
 Inversion Count Problem
 Used in External Sorting
 """
-def mergesort(arr):
-     if len(arr) > 1:
-         mid = len(arr)//2
-         left = arr[:mid]
-         right = arr[mid:]
-         print("left : " + str(left))
-         print("right : " + str(right))
-         
-         mergesort(left)
-         mergesort(right)
-         print("left 1 : " + str(left))
-         print("right 1 : " + str(right))
-         
-         i = j  = k = 0
-         while i <len(left) and j < len(right):
-             if left[i] <= right[j]:
-                 arr[k] = left[i]
-                 i += 1
-             else:
-                 arr[k] = right[j]
-                 j += 1
-             k += 1 
-             
-         while i < len(left):
-              arr[k] = left[i]
-              i = i+1
-              k = k+1
 
-         while j < len(right):
+
+import random
+
+
+def mergeSort(arr):
+    if len(arr) == 1:
+        return
+
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+    mergeSort(left)
+    mergeSort(right)
+
+    i = j = k = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            arr[k] = left[i]
+            i += 1
+        else:
+            arr[k] = right[j]
+            j += 1
+        k += 1
+    while i < len(left):
+        arr[k] = left[i]
+        i += 1
+        k += 1
+    while j < len(right):
+        arr[k] = right[j]
+        k += 1
+        j += 1
+
+
+def mergesort(arr):
+    if len(arr) > 1:
+        mid = len(arr)//2
+        left = arr[:mid]
+        right = arr[mid:]
+        print("left : " + str(left))
+        print("right : " + str(right))
+
+        mergesort(left)
+        mergesort(right)
+        print("left 1 : " + str(left))
+        print("right 1 : " + str(right))
+
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            arr[k] = left[i]
+            i = i+1
+            k = k+1
+
+        while j < len(right):
             arr[k] = right[j]
             j = j+1
-            k = k+1    
-        
-array = list()
-size = input("Enter array size : ")
-print("Enter elements of array : ")
-for i in range(int(size)):
-    c = input()
-    array.append(int(c))
-print("Entered array is : ")
-print(array)    
+            k = k+1
 
-mergesort(array)
+
+array = list()
+size = int(input("Enter size of the array : "))
+
+for i in range(size):
+    c = random.randrange(0, size)
+    array.append(c)
+
+# print("Entered array is : ")
+# print(array)
+
+# mergesort(array)
+mergeSort(array)
 
 print("Sorted array is : ")
-print(array, end = " ")
+print(array, end=" ")
