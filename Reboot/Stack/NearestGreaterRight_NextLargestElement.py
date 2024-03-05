@@ -1,4 +1,8 @@
 def NGR(arr):
+    """
+    Given an array 'arr', this function returns the next greater element for each element in the array. 
+    The input parameter is a list of integers, and the return type is also a list of integers.
+    """
     if not arr:
         return arr
     result = []
