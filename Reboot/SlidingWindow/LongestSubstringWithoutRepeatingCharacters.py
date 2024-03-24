@@ -1,15 +1,25 @@
 
-def LongestSubstringWithoutReapeatingCharacters(string: str) -> int:
+def LongestSubstringWithoutReapeatingCharacters(string: str):
+    """
+    Find the length of the longest substring without repeating characters in the given string.
+
+    Args:
+    string (str): The input string
+
+    Returns:
+    int: The length of the longest substring without repeating characters
+    """
     i = 0
-    maxLen = float("-inf")
+    max_len = float("-inf")
     hashmap = {}
-    for j in range(len(string)):
-        if string[j] in hashmap:
-            hashmap[string[j]] += 1
+    for j, item in enumerate(string):
+        if item in hashmap:
+            hashmap[item] += 1
         else:
-            hashmap[string[j]] = 1
+            hashmap[item] = 1
+
         if len(hashmap) == j - i + 1:
-            maxLen = max(maxLen, j - i + 1)
+            max_len = max(max_len, j - i + 1)
         elif len(hashmap) < j - i + 1:
             while len(hashmap) < j - i + 1:
                 if string[i] in hashmap:
@@ -17,15 +27,18 @@ def LongestSubstringWithoutReapeatingCharacters(string: str) -> int:
                     if hashmap[string[i]] == 0:
                         del hashmap[string[i]]
                 i += 1
+            if len(hashmap) == j - i + 1:
+                max_len = max(max_len, j - i + 1)
         else:
             continue
-    return maxLen
+    return max_len
 
-string =  "abcabcbb"
-print(LongestSubstringWithoutReapeatingCharacters(string))
 
-string =  "bbbbbbbbb"
-print(LongestSubstringWithoutReapeatingCharacters(string))
+S = "abcabcbb"
+print(LongestSubstringWithoutReapeatingCharacters(S))
 
-string = "pwwkew"
-print(LongestSubstringWithoutReapeatingCharacters(string))
+S = "bbbbbbbbb"
+print(LongestSubstringWithoutReapeatingCharacters(S))
+
+S = "pwwkew"
+print(LongestSubstringWithoutReapeatingCharacters(S))
