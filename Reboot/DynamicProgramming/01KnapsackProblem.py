@@ -1,9 +1,33 @@
 def ZeroOneKnapsackProblem(capacity, weights, values) -> int:
+    """
+    A function that solves the 0-1 Knapsack problem using a helper function.
+
+    Parameters:
+    - capacity: an integer representing the maximum weight the knapsack can hold
+    - weights: a list of integers representing the weights of the items
+    - values: a list of integers representing the values of the items
+
+    Returns:
+    - An integer representing the maximum profit that can be achieved
+    """
     # Hypothesis: Will always return max profit
     return ZeroOneKnapsackProblemHelper(0, 0, capacity, weights, values)
 
 
 def ZeroOneKnapsackProblemHelper(index: int, profit: int, capacity: int, weights: list, values: list[int]) -> int:
+    """
+    A function to solve the 0/1 Knapsack Problem recursively by exploring all possible combinations.
+
+    Parameters:
+    - index: int, the current index of the item being considered
+    - profit: int, the current total profit
+    - capacity: int, the remaining capacity of the knapsack
+    - weights: list, a list of weights of the items
+    - values: list[int], a list of values of the items
+
+    Returns:
+    - int, the maximum profit that can be achieved
+    """
     # Hypothesis: Will always return Max Profit
     # Base Condition: If capacity is zero and index is at end
     if capacity <= 0 or index >= len(weights):
@@ -23,12 +47,37 @@ def ZeroOneKnapsackProblemHelper(index: int, profit: int, capacity: int, weights
 
 
 def ZeroOneKnapsackProblemMemo(capacity, weights, values) -> int:
+    """
+    Calculate the maximum value that can be obtained by filling a knapsack of a given capacity using the items with given weights and values.
+
+    Parameters:
+        capacity (int): The maximum capacity of the knapsack.
+        weights (List[int]): The weights of the items.
+        values (List[int]): The values of the items.
+
+    Returns:
+        int: The maximum value that can be obtained by filling the knapsack.
+    """
     memo = [[-1 for _ in range(0, capacity + 1)]
             for _ in range(len(weights) + 1)]
     return ZeroOneKnapsackProblemHelperMemo(0, 0, memo, capacity, weights, values)
 
 
 def ZeroOneKnapsackProblemHelperMemo(index, profit, memo, capacity, weights, values) -> int:
+    """
+    Calculates the maximum profit that can be obtained from a knapsack problem using the Zero-One algorithm.
+
+    Args:
+        index (int): The current index in the weights list.
+        profit (int): The current profit obtained.
+        memo (List[List[int]]): The memoization table to store previously calculated values.
+        capacity (int): The maximum capacity of the knapsack.
+        weights (List[int]): The list of weights for each item.
+        values (List[int]): The list of values for each item.
+
+    Returns:
+        int: The maximum profit that can be obtained from the knapsack problem.
+    """
     if capacity <= 0 or index >= len(weights):
         return profit
 
@@ -82,6 +131,11 @@ print(f"Maximum Profit from items  with {weights} and values {values} Recursion:
 
 
 def ZeroOneKnapsackProblemBottomUp(capacity, weights, values):
+    """
+    This function solves the 0/1 knapsack problem using the bottom-up dynamic programming approach.
+    It takes three parameters: capacity (integer), weights (list of integers), and values (list of integers).
+    It returns the maximum value that can be obtained given the capacity, weights, and values.
+    """
     if capacity == 0:
         return 0
 

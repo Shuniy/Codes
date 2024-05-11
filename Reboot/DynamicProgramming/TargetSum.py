@@ -1,8 +1,30 @@
 def targetSumRecursion(arr: list[int], target: int) -> int:
+    """
+    Recursively calculates the number of target sums in the given array that sum up to the target value.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        target (int): The target sum to be achieved.
+
+    Returns:
+        int: The number of target sums in the array that sum up to the target value.
+    """
     return targetSumRecursionHelper(arr, target, 0, 0)
 
 
 def targetSumRecursionHelper(arr: list[int], target: int, index: int, count) -> int:
+    """
+    A recursive function that counts the number of ways to obtain a target sum from the given array.
+
+    Parameters:
+    - arr (list[int]): The input array of integers.
+    - target (int): The target sum to achieve.
+    - index (int): The current index in the array.
+    - count: The current count of ways to reach the target sum.
+
+    Returns:
+    - int: The total count of ways to obtain the target sum.
+    """
     if index >= len(arr):
         if target == 0:
             count += 1
@@ -33,6 +55,16 @@ print(
 
 
 def targetSumDP(arr: list[int], target: int) -> int:
+    """
+    Calculates the number of target sums in the given array that sum up to the target value using dynamic programming.
+
+    Parameters:
+        arr (list[int]): The input array of integers.
+        target (int): The target sum to be achieved.
+
+    Returns:
+        int: The number of target sums in the array that sum up to the target value.
+    """
     targetSumToFind: int = (target + sum(arr)) // 2
     dp: list[list[int]] = [
         [0 for _ in range(targetSumToFind + 1)] for _ in range(len(arr) + 1)]

@@ -1,9 +1,30 @@
 # Find amximum number of ways or total number of ways to make total Sum from given coins
 def CoinChange1REcursion(coins: list[int], totalSum: int) -> int:
+    """
+    A recursive function to find the maximum number of ways to make a total sum from the given coins.
+
+    Args:
+        coins (list[int]): The list of coin denominations available.
+        totalSum (int): The total sum to be achieved.
+
+    Returns:
+        int: The maximum number of ways to make the total sum using the given coins.
+    """
     return CoinChange1RecursionHelper(coins, totalSum, 0)
 
 
 def CoinChange1RecursionHelper(coins: list[int], totalSum: int, index: int) -> int:
+    """
+    A recursive function to find the maximum number of ways to make a total sum from the given coins.
+
+    Args:
+        coins (list[int]): The list of coin denominations available.
+        totalSum (int): The total sum to be achieved.
+        index (int): The current index in the coins list.
+
+    Returns:
+        int: The maximum number of ways to make the total sum using the given coins.
+    """
     if index >= len(coins):
         return 0
     if totalSum <= 0:
@@ -25,6 +46,16 @@ print(
 
 
 def CoinChange1DP(coins: list[int], totalSum: int) -> int:
+    """
+    Calculates the number of ways to make a given total sum using a list of coins.
+
+    Args:
+        coins (list[int]): The list of coin denominations available.
+        totalSum (int): The total sum to be achieved.
+
+    Returns:
+        int: The number of ways to make the total sum using the given coins.
+    """
     if totalSum <= 0:
         return 1
     dp: list[list[int]] = [

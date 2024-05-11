@@ -39,32 +39,21 @@ def LongestCommonSubsequenceHelper(x, y, m, n):
         return max(LongestCommonSubsequenceHelper(x, y, m - 1, n), LongestCommonSubsequenceHelper(x, y, m, n - 1))
 
 
-def ShortestCommonSupersequence(x, y):
+def MinimumNumberInsertionDeletion(x, y):
     """
-    A function to find the length of the shortest common supersequence of two strings.
-    It uses dynamic programming to populate a 2D array and iterates through the strings to calculate the length.
+    A function to find the minimum number of insertions and deletions required to convert one string to another.
+
+    Args:
+        x: The first input string.
+        y: The second input string.
+
+    Returns:
+        The minimum number of insertions and deletions required to convert one string to another.
     """
-    dp = [[0 for _ in range(len(y) + 1)] for _ in range(len(x) + 1)]
-    for i in range(1, len(x) + 1):
-        for j in range(1, len(y) + 1):
-            if x[i - 1] == y[j - 1]:
-                dp[i][j] = 1 + dp[i - 1][j - 1]
-            else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-
-    return (len(x) + len(y) - dp[len(x)][len(y)])
+    return (len(x) - LongestCommonSubsequence(x, y)) + (len(y) - LongestCommonSubsequence(y, x))
 
 
-def printShortesrCommonSupersequence(x, y):
-    """
-    Prints the shortest common supersequence of two strings.
-    """
-    print(ShortestCommonSupersequence(x, y))
-
-
-x = "aggtab"
-y = "gxtxayb"
+x = "geeksforgeeks"
+y = "geeks"
 print(
-    f"Length of longest common subsequence is: {LongestCommonSubsequence(x, y)}")
-print(
-    f"Length of Shortest common supersequence is: {ShortestCommonSupersequence(x, y)}")
+    f"minimum insertion and deletion from a to b is: {LongestCommonSubsequence(x, y)}")

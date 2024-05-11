@@ -1,8 +1,30 @@
 def CountSubsetsWithGivenSumRecursive(arr: list[int], targetSum: int) -> int:
+    """
+    Recursive function to count the number of subsets in the given array that sum up to the target sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be achieved.
+
+    Returns:
+        int: The total number of subsets that sum up to the target sum.
+    """
     return CountSubsetsWithGivenSumRecursiveHelper(arr, targetSum, 0, 0)
 
 
 def CountSubsetsWithGivenSumRecursiveHelper(arr: list[int], targetSum: int, index: int, count: int) -> int:
+    """
+    Recursively counts the number of subsets in a given array that have a sum equal to the target sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum for the subsets.
+        index (int): The current index in the array.
+        count (int): The current count of subsets.
+
+    Returns:
+        int: The total count of subsets with a sum equal to the target sum.
+    """
     if index >= len(arr):
         if targetSum == 0:
             count += 1
@@ -48,6 +70,16 @@ print(
 
 
 def CountSubsetsWithGivenSumTopDown(arr: list[int], targetSum: int) -> int:
+    """
+    CountSubsetsWithGivenSumTopDown calculates the total number of subsets in the given array 'arr' that sum up to the target sum 'targetSum' using a top-down dynamic programming approach.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be achieved.
+
+    Returns:
+        int: The total number of subsets that sum up to the target sum.
+    """
     dp: list[list[int]] = [
         [0 for _ in range(targetSum + 1)] for _ in range(len(arr) + 1)]
     dp[0][0] = 1

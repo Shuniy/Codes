@@ -1,9 +1,31 @@
 def MinimumSubsetSumDifference(arr: list[int]) -> int:
+    """
+    Calculate the minimum difference between the sum of two subsets of the given array.
+
+    Parameters:
+    - arr (list[int]): The input array of integers.
+
+    Returns:
+    - int: The minimum difference between the sum of two subsets of the array.
+    """
     totalSum: int = sum(arr)
     return MinimumSubsetSumDifferenceHelper(arr, 0, 0, totalSum, float("inf"))
 
 
 def MinimumSubsetSumDifferenceHelper(arr: list[int], index: int, subset1Sum: int, subset2Sum: int, minSum: int) -> int:
+    """
+    Recursive helper function to calculate the minimum difference between the sum of two subsets of the given array.
+
+    Parameters:
+    - arr (list[int]): The input array of integers.
+    - index (int): The current index in the array.
+    - subset1Sum (int): The sum of elements in the first subset.
+    - subset2Sum (int): The sum of elements in the second subset.
+    - minSum (int): The minimum difference between the sum of two subsets so far.
+
+    Returns:
+    - int: The minimum difference between the sum of two subsets of the array.
+    """
     if index >= len(arr):
         minSum = min(abs(subset1Sum - subset2Sum), minSum)
         return minSum
@@ -33,6 +55,15 @@ print(
 
 
 def MinimumSubsetSumDifferenceDP(arr: list[int]):
+    """
+    Calculate the minimum subset sum difference using Dynamic Programming.
+
+    Parameters:
+    - arr (list[int]): The input array of integers.
+
+    Returns:
+    - int: The minimum subset sum difference.
+    """
     totalSum: int = sum(arr)
     dp: list[list[int]] = [[False for _ in range(
         totalSum + 1)] for _ in range(len(arr) + 1)]
@@ -52,7 +83,7 @@ def MinimumSubsetSumDifferenceDP(arr: list[int]):
     # dp[i][j] at 5 of value true will tell that arr[i - 1] position array can give sum of 5
     minSum = float("inf")
     for j in range((totalSum // 2) + 1, -1, -1):
-        if arr[len(arr)][j] == True:
+        if dp[len(arr)][j] == True:
             subset1Sum = j
             subset2Sum = totalSum - subset1Sum
             subsetDifference = abs(subset1Sum - subset2Sum)

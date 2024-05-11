@@ -1,9 +1,30 @@
 # Recursion
 def subsetSumRecursion(arr: list[int], targetSum: int) -> bool:
+    """
+    Check if there exists a subset of the given array that sums up to the target sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be checked.
+
+    Returns:
+        bool: True if there exists a subset that sums up to the target sum, False otherwise.
+    """
     return subsetSumRecursionHelper(arr, targetSum, 0)
 
 
 def subsetSumRecursionHelper(arr: list[int], targetSum: int, index: int) -> bool:
+    """
+    Recursively checks if there exists a subset of the given array that sums up to the target sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be checked.
+        index (int): The current index in the array.
+
+    Returns:
+        bool: True if there exists a subset that sums up to the target sum, False otherwise.
+    """
     if index >= len(arr):
         return False
 
@@ -39,6 +60,16 @@ print(
 
 
 def subsetSumRecursionMemo(arr: list[int], targetSum: int) -> bool:
+    """
+    Calculates whether it is possible to obtain a sum of `targetSum` from a subset of the given array `arr` using recursion and memoization.
+
+    Parameters:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be checked.
+
+    Returns:
+        bool: True if it is possible to obtain a sum of `targetSum` from a subset of `arr`, False otherwise.
+    """
     memo: list[list[bool]] = [[False for _ in range(
         targetSum + 1)] for _ in range(len(arr) + 1)]
     for i in range(len(arr) + 1):
@@ -47,6 +78,18 @@ def subsetSumRecursionMemo(arr: list[int], targetSum: int) -> bool:
 
 
 def subsetSumRecursionMemoHelper(arr: list[int], targetSum: int, index: int, memo: list[list[bool]]) -> bool:
+    """
+    Recursively checks if there exists a subset of the given array that sums up to the target sum using memoization.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be checked.
+        index (int): The current index in the array.
+        memo (list[list[bool]]): The memoization table.
+
+    Returns:
+        bool: True if there exists a subset that sums up to the target sum, False otherwise.
+    """
     if index >= len(arr):
         return False
 
@@ -88,6 +131,16 @@ print(
 
 # Bottom UP Approach
 def subsetSumRecursionTopDown(arr: list[int], targetSum: int) -> bool:
+    """
+    Calculates whether it is possible to obtain a sum of `targetSum` from a subset of the given array `arr` using top-down dynamic programming.
+
+    Parameters:
+        arr (list[int]): The input array of integers.
+        targetSum (int): The target sum to be checked.
+
+    Returns:
+        bool: True if it is possible to obtain a sum of `targetSum` from a subset of `arr`, False otherwise.
+    """
     dp: list[list[bool]] = [[False for _ in range(
         targetSum + 1)] for _ in range(len(arr) + 1)]
     for i in range(len(arr) + 1):

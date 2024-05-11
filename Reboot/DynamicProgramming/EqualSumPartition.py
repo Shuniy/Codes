@@ -1,4 +1,13 @@
 def EqualSumPartitionRecursive(arr: list[int]) -> bool:
+    """
+    Recursively checks if the given array can be partitioned into two subsets with equal sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+
+    Returns:
+        bool: True if the array can be partitioned into two subsets with equal sum, False otherwise.
+    """
     arrSum: int = sum(arr)
     if arrSum % 2 == 0:
         return EqualSumPartitionRecursiveHelper(arr, 0, arrSum // 2)
@@ -7,6 +16,17 @@ def EqualSumPartitionRecursive(arr: list[int]) -> bool:
 
 
 def EqualSumPartitionRecursiveHelper(arr, index, targetSum) -> bool:
+    """
+    Recursively checks if the given array can be partitioned into two subsets with equal sum.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        index (int): The current index in the array.
+        targetSum (int): The target sum for the two subsets.
+
+    Returns:
+        bool: True if the array can be partitioned into two subsets with equal sum, False otherwise.
+    """
     if index >= len(arr):
         if targetSum == 0:
             return True
@@ -37,9 +57,18 @@ print(
 
 
 def EqualSumPartitionMemo(arr: list[int]) -> bool:
+    """
+    Checks if the given array can be partitioned into two subsets with equal sum using memoization.
+
+    Args:
+        arr (list[int]): The input array of integers.
+
+    Returns:
+        bool: True if the array can be partitioned into two subsets with equal sum, False otherwise.
+    """
     arrSum: int = sum(arr)
     if arrSum % 2 == 0:
-        memo: list[list[False]] = [[False for _ in range(
+        memo: list[list[bool]] = [[False for _ in range(
             (arrSum // 2) + 1)] for _ in range(len(arr) + 1)]
         return EqualSumPartitionMemoHelper(arr, 0, arrSum // 2, memo)
     else:
@@ -47,6 +76,18 @@ def EqualSumPartitionMemo(arr: list[int]) -> bool:
 
 
 def EqualSumPartitionMemoHelper(arr, index, targetSum, memo) -> bool:
+    """
+    Recursively checks if the given array can be partitioned into two subsets with equal sum using memoization.
+
+    Args:
+        arr (list[int]): The input array of integers.
+        index (int): The current index in the array.
+        targetSum (int): The target sum for the two subsets.
+        memo (list[list[bool]]): The memoization table.
+
+    Returns:
+        bool: True if the array can be partitioned into two subsets with equal sum, False otherwise.
+    """
     if index >= len(arr):
         return False
 
@@ -82,9 +123,18 @@ print(
 
 
 def EqualSumPartitionTopDown(arr: list[int]) -> bool:
+    """
+    Checks if the given array can be partitioned into two subsets with equal sum using dynamic programming.
+
+    Args:
+        arr (list[int]): The input array of integers.
+
+    Returns:
+        bool: True if the array can be partitioned into two subsets with equal sum, False otherwise.
+    """
     arrSum: int = sum(arr)
     if arrSum % 2 == 0:
-        dp: list[list[False]] = [[False for _ in range(
+        dp: list[list[bool]] = [[False for _ in range(
             (arrSum // 2) + 1)] for _ in range(len(arr) + 1)]
         for i in range(len(arr) + 1):
             dp[i][0] = True
