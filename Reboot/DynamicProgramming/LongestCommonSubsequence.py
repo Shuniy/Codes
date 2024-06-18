@@ -148,7 +148,7 @@ def PrintLCS(x: str, y: str) -> str:
     i: int = m
     j: int = n
     result: str = ""
-    while i != 0 or j != 0:
+    while i > 0 and j > 0:
         if x[i - 1] == y[j - 1]:
             result = x[i - 1] + result
             i -= 1
