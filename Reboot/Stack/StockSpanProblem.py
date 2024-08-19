@@ -46,3 +46,5 @@ arr = [1, 3, 2, 4]
 print(stock_span_problem(arr))
 arr = [1, 3, 0, 0, 1, 2, 4]
 print(stock_span_problem(arr))
+arr = [100, 80, 60, 70, 60, 75, 85]
+print(stock_span_problem(arr))

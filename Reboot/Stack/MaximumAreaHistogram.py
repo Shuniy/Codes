@@ -68,17 +68,17 @@ def max_area_historgram(arr):
     """
     if not arr:
         return arr
-    
+
     left = NSL(arr)
     right = NSR(arr)
-    
-    maxArea = float("-inf")
-    for i in range(len(arr)):
+
+    max_area = float("-inf")
+    for i, item in enumerate(arr):
         start = 0 if left[i] == -1 else left[i] + 1
         end = len(arr) - 1 if right[i] == -1 else right[i] - 1
-        maxArea = max(maxArea, arr[i] * (end - start + 1))
-        
-    return maxArea
+        max_area = max(max_area, item * (end - start + 1))
+
+    return max_area
 
 
 # Driver program to test above function
