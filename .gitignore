@@ -470,3 +470,6 @@ Dependencies/
 .vscode
 
 # End of https://www.toptal.com/developers/gitignore/api/python,swift,java,c,c++,objective-c,ruby,rust
+
+# Local Finder metadata
+.DS_Store
